@@ -83,10 +83,12 @@
         [fileManager removeItemAtPath:@"/private/jailbreak.txt" error:nil];
         return YES;
     }
-    
-    // Check if the app can open a Cydia's URL scheme
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"cydia://package/com.example.package"]]) {
-        return YES;
+
+    if [UIApplication respondsToSelector: @selector(sharedApplication)] {
+        // Check if the app can open a Cydia's URL scheme
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"cydia://package/com.example.package"]]) {
+            return YES;
+        }
     }
 
 #endif
