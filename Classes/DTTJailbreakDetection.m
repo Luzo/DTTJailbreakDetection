@@ -84,9 +84,9 @@
         return YES;
     }
 
-    if [UIApplication respondsToSelector: @selector(sharedApplication)] {
+    if ![UIApplication isAnExtension] {
         // Check if the app can open a Cydia's URL scheme
-        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"cydia://package/com.example.package"]]) {
+        if ([[UIApplication safeShared] canOpenURL:[NSURL URLWithString:@"cydia://package/com.example.package"]]) {
             return YES;
         }
     }
